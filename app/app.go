@@ -75,9 +75,7 @@ import (
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
-	//examplemodulekeeper "example/x/example/keeper"
-	//examplemodule "example/x/example/module" // import for side-effects examplemodule
-	//examplemoduletypes "example/x/example/types"
+	examplemodulekeeper "example/x/example/keeper"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	"example/docs"
@@ -147,7 +145,7 @@ type App struct {
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 	ScopedKeepers             map[string]capabilitykeeper.ScopedKeeper
 
-	//ExampleKeeper examplemodulekeeper.Keeper
+	ExampleKeeper examplemodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -187,7 +185,6 @@ func AppConfig() depinject.Config {
 			map[string]module.AppModuleBasic{
 				genutiltypes.ModuleName: genutil.NewAppModuleBasic(genutiltypes.DefaultMessageValidator),
 				govtypes.ModuleName:     gov.NewAppModuleBasic(getGovProposalHandlers()),
-				//examplemoduletypes.ModuleName:  examplemodule.NewAppModuleBasic(),
 				// this line is used by starport scaffolding # stargate/appConfig/moduleBasic
 			},
 		),
@@ -252,7 +249,7 @@ func New(
 		&app.NFTKeeper,
 		&app.GroupKeeper,
 		&app.CircuitBreakerKeeper,
-		//&app.ExampleKeeper,
+		&app.ExampleKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)
