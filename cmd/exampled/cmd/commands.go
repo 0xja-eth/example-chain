@@ -34,6 +34,7 @@ func initRootCmd(
 ) {
 	rootCmd.AddCommand(
 		genutilcli.InitCmd(basicManager, app.DefaultNodeHome),
+		genutilcli.ValidateGenesisCmd(basicManager),
 		NewInPlaceTestnetCmd(addModuleInitFlags),
 		NewTestnetMultiNodeCmd(basicManager, banktypes.GenesisBalancesIterator{}),
 		debug.Cmd(),
